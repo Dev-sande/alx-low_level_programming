@@ -1,24 +1,42 @@
 #include "lists.h"
 
 /**
- * add_beginning_node - adds a new node at the beginning of a linked list
- * @head: pointer to the head node in the list
- * @data: data to be inserted in the new node
+ * delete_nodeint_at_index - deletes a node at a given position in a linked list
+ * @head: pointer to the first node in the list
+ * @index: index of the node to delete
  *
- * Return: pointer to the new node, or NULL if it fails
+ * Return: 1 if successful, -1 if it fails
  */
-list_node_t *add_beginning_node(list_node_t **head, const int data)
+int delete_nodeint_at_index(listint_t **head, unsigned int index)
 {
-	list_node_t *new_node;
+    listint_t *current = NULL;
+    listint_t *prev = NULL;
+    unsigned int i = 0;
 
-	new_node = malloc(sizeof(list_node_t));
-	if (!new_node)
-		return (NULL);
+    if (head == NULL || *head == NULL)
+        return (-1);
 
-	new_node->data = data;
-	new_node->next = *head;
-	*head = new_node;
+    current = *head;
+    if (index == 0)
+    {
+        *head = current->next;
+        free(current);
+        return (1);
+    }
 
-	return (new_node);
+    while (current != NULL && i < index)
+    {
+        prev = current;
+        current = current->next;
+        i++;
+    }
+
+    if (current == NULL)
+        return (-1);
+
+    prev->next = current->next;
+    free(current);
+
+    return (1);
 }
 
