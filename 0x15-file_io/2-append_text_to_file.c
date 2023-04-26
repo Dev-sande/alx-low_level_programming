@@ -1,33 +1,34 @@
-#include <fcntl.h>
-#include <unistd.h>
+#include "main.h"
 
 /**
- * @filename: is the name of the file we are working with
- * @text_content: is the NULL terminated string to add at the end of the file
+ * append_text_to_file - writes the contents of text
+ * content to the end of the file
+ * @filename: file name
+ * @text_content: add text to end of line.
+ *
+ * Return: 1 on success and 0 on failure
  */
-
-int append_text_to_file(const char *filename, const char *text)
+int append_text_to_file(const char *filename, char *text_content)
 {
-	int taps, length = 0;
+	int o, w, len = 0;
 
 	if (filename == NULL)
-	    return (-1);
+		return (-1);
 
-	if (text != NULL) {
-	    for (length = 0; text[length]; length++);
+	if (text_content != NULL)
+	{
+		for (len = 0; text_content[len];)
+			len++;
 	}
 
-taps = open(filename, O_WRONLY | O_APPEND);
+	o = open(filename, O_WRONLY | O_APPEND);
+	w = write(o, text_content, len);
 
-if (taps == -1)
-   return (-1);
+	if (o == -1 || w == -1)
+		return (-1);
 
-if (write(taps, text, length) != length) {
-   close(taps);
-   return (-1);
+	close(o);
+
+	return (1);
 }
 
-close(taps);
-return (1);
-
-}	
