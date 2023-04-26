@@ -1,37 +1,36 @@
 #include "main.h"
 
 /**
- * read_textfile - returns the number of
- * bytes written to standard output
+ * read_textfile - reads text file
  * @filename: filename.
- * @letters: numbers of letters printed.
+ * @letters: letters to print out
  *
- * Return: 0 is returned on failure.
+ * Return: return 1 on success and 0 on failure.
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int pdf;
-	ssize_t hold, fac;
+	int fd;
+	ssize_t nrd, nwr;
 	char *buf;
 
 	if (!filename)
 		return (0);
 
-	pdf = open(filename, O_RDONLY);
+	fd = open(filename, O_RDONLY);
 
-	if (pdf == -1)
+	if (fd == -1)
 		return (0);
 
 	buf = malloc(sizeof(char) * (letters));
 	if (!buf)
 		return (0);
 
-	hold = read(pdf, buf, letters);
-	fac = write(STDOUT_FILENO, buf, hold);
+	nrd = read(fd, buf, letters);
+	nwr = write(STDOUT_FILENO, buf, nrd);
 
-	close(pdf);
+	close(fd);
 
 	free(buf);
 
-	return (fac);
+	return (nwr);
 }
