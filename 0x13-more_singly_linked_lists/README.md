@@ -1,1 +1,1 @@
-These are files for the '0x13-more_singly_linked_lists' project on ALX.
+This is the project folder for the 0x13-more_singly_linked_lists tasks from ALX

@@ -8,8 +8,6 @@
  * 
  * Return: Always 0.
  */
-int print_listint(listint_t *h);
-
 int main(void)
 {
     listint_t *head;

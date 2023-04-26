@@ -21,6 +21,6 @@ int main(void)
     add_nodeint(&head, 98);
     add_nodeint(&head, 402);
     add_nodeint(&head, 1024);
-    pop_listint(head);
+    print_listint(head);
     return (0);
 }
