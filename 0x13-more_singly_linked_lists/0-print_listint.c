@@ -3,7 +3,6 @@
 /**
  * print_listint - prints all our elements of a singly linked list of integers
  * @k: head of a list.
- * @pmd: local variable
  * Return: numbers of nodes.
  */
 size_t print_listint(const listint_t *k)
