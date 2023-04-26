@@ -1,6 +1,7 @@
 #include "main.h"
 /**
 * print_binary - prints out our binary
+* @input_number: takes a number input
 */
 void print_binary(unsigned long int input_number)
 {
