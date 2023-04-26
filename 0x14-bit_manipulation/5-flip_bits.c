@@ -1,16 +1,21 @@
 #include "main.h"
 
-unsigned int flip_bits(unsigned long int om, unsigned long int um)
+/**
+ * flip_bits - calculates the number of bits.
+ * @n: first value.
+ * @m: second value.
+ *
+ * Return: bit count.
+ */
+unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-	int i, count = 0;
-	unsigned long int result = om ^ um;
+	unsigned int nits;
 
-for (i = 63; i >=0; i--)
+	for (nits = 0; n || m; n >>= 1, m >>= 1)
 	{
-		if ((result >> i) & 1)
-			count++;
+		if ((n & 1) != (m & 1))
+			nits++;
 	}
 
-	return (count);
-
+	return (nits);
 }
